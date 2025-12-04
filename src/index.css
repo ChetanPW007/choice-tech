@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 180 25% 8%;
+    --foreground: 180 100% 90%;
+
+    --card: 180 30% 10%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 180 30% 8%;
+    --popover-foreground: 180 100% 90%;
+
+    --primary: 160 100% 40%;
+    --primary-foreground: 180 30% 5%;
+
+    --secondary: 180 40% 15%;
+    --secondary-foreground: 180 100% 90%;
+
+    --muted: 180 30% 15%;
+    --muted-foreground: 180 50% 60%;
+
+    --accent: 320 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 60% 25%;
+    --input: 180 40% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom neon colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-pink: 320 100% 60%;
+    --neon-green: 140 100% 45%;
+    --neon-yellow: 50 100% 50%;
+    --neon-red: 0 100% 50%;
+
+    /* Gradients */
+    --gradient-bg: linear-gradient(135deg, hsl(180 30% 8%) 0%, hsl(160 40% 5%) 50%, hsl(180 25% 10%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(180 30% 12%) 0%, hsl(180 25% 8%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(140 100% 35%) 0%, hsl(160 100% 40%) 100%);
+  }
+
+  .dark {
+    --background: 180 25% 8%;
+    --foreground: 180 100% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-rajdhani;
+    background: var(--gradient-bg);
+    min-height: 100vh;
+  }
+
+  /* Grid background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(hsl(var(--neon-cyan) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-cyan) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@layer components {
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  /* Neon text effects */
+  .neon-text-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 
+      0 0 5px hsl(var(--neon-cyan) / 0.8),
+      0 0 10px hsl(var(--neon-cyan) / 0.6),
+      0 0 20px hsl(var(--neon-cyan) / 0.4),
+      0 0 40px hsl(var(--neon-cyan) / 0.2);
+  }
+
+  .neon-text-pink {
+    color: hsl(var(--neon-pink));
+    text-shadow: 
+      0 0 5px hsl(var(--neon-pink) / 0.8),
+      0 0 10px hsl(var(--neon-pink) / 0.6),
+      0 0 20px hsl(var(--neon-pink) / 0.4),
+      0 0 40px hsl(var(--neon-pink) / 0.2);
+  }
+
+  .neon-text-green {
+    color: hsl(var(--neon-green));
+    text-shadow: 
+      0 0 5px hsl(var(--neon-green) / 0.8),
+      0 0 10px hsl(var(--neon-green) / 0.6),
+      0 0 20px hsl(var(--neon-green) / 0.4),
+      0 0 40px hsl(var(--neon-green) / 0.2);
+  }
+
+  .neon-text-yellow {
+    color: hsl(var(--neon-yellow));
+    text-shadow: 
+      0 0 5px hsl(var(--neon-yellow) / 0.8),
+      0 0 10px hsl(var(--neon-yellow) / 0.6),
+      0 0 20px hsl(var(--neon-yellow) / 0.4);
+  }
+
+  /* Neon border effects */
+  .neon-border-cyan {
+    border: 2px solid hsl(var(--neon-cyan));
+    box-shadow: 
+      0 0 5px hsl(var(--neon-cyan) / 0.5),
+      0 0 10px hsl(var(--neon-cyan) / 0.3),
+      inset 0 0 10px hsl(var(--neon-cyan) / 0.1);
+  }
+
+  .neon-border-green {
+    border: 2px solid hsl(var(--neon-green));
+    box-shadow: 
+      0 0 5px hsl(var(--neon-green) / 0.5),
+      0 0 10px hsl(var(--neon-green) / 0.3),
+      inset 0 0 10px hsl(var(--neon-green) / 0.1);
+  }
+
+  /* Glowing button */
+  .btn-glow-green {
+    background: linear-gradient(135deg, hsl(140 100% 35%) 0%, hsl(160 100% 40%) 100%);
+    color: hsl(180 30% 5%);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 
+      0 0 10px hsl(var(--neon-green) / 0.5),
+      0 0 20px hsl(var(--neon-green) / 0.3),
+      0 0 30px hsl(var(--neon-green) / 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow-green:hover {
+    box-shadow: 
+      0 0 15px hsl(var(--neon-green) / 0.7),
+      0 0 30px hsl(var(--neon-green) / 0.5),
+      0 0 45px hsl(var(--neon-green) / 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Card glow */
+  .card-glow {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    box-shadow: 
+      0 0 20px hsl(var(--neon-cyan) / 0.1),
+      inset 0 0 30px hsl(180 30% 5% / 0.5);
+  }
+
+  /* Option button styles */
+  .option-btn {
+    background: hsl(180 30% 12%);
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .option-btn:hover {
+    border-color: hsl(var(--neon-cyan) / 0.6);
+    background: hsl(180 30% 15%);
+  }
+
+  .option-btn.selected {
+    border-color: hsl(var(--neon-green));
+    background: hsl(var(--neon-green) / 0.15);
+    box-shadow: 0 0 15px hsl(var(--neon-green) / 0.3);
+  }
+
+  /* Warning modal */
+  .warning-overlay {
+    background: hsl(0 0% 0% / 0.9);
+    backdrop-filter: blur(10px);
+  }
+
+  .warning-box {
+    background: linear-gradient(145deg, hsl(50 100% 10%) 0%, hsl(40 80% 5%) 100%);
+    border: 2px solid hsl(var(--neon-yellow));
+    box-shadow: 
+      0 0 30px hsl(var(--neon-yellow) / 0.5),
+      inset 0 0 20px hsl(var(--neon-yellow) / 0.1);
+  }
+
+  /* Disqualified screen */
+  .disqualified-bg {
+    background: linear-gradient(145deg, hsl(0 60% 10%) 0%, hsl(0 50% 5%) 100%);
+  }
+
+  /* Progress circle */
+  .progress-circle {
+    transform: rotate(-90deg);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(180 30% 10%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--neon-cyan) / 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--neon-cyan) / 0.7);
+  }
+
+  /* Animation classes */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--neon-green) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 25px hsl(var(--neon-green) / 0.8);
+    }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+}
